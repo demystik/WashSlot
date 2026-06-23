@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602809309636",
+    "project_id": "washslot-72a55",
+    "storage_bucket": "washslot-72a55.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602809309636:android:36f63acba3feaede38ec91",
+        "android_client_info": {
+          "package_name": "com.demystik.washslot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA29s7W0wozH2hvJbpdih1dg4Fd-jo8n8A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
