@@ -43,7 +43,7 @@ class AppButton extends StatelessWidget {
               )
             : Text(
                 label,
-                style: variant == AppButtonVariant.outlined ? text.titleMedium?.copyWith(color: colors.onSurface, fontWeight: FontWeight.w400) : text.titleMedium?.copyWith(color: colors.onPrimary),
+                style: variant == AppButtonVariant.outlined ? text.titleMedium?.copyWith(color: colors.onSurface, fontWeight: FontWeight.w600) : text.titleMedium?.copyWith(color: colors.onPrimary),
               ),
       ),
     );

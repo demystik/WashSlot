@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:washslot/features/onboarding/presentation/first_onboarding.dart';
-import 'package:washslot/features/onboarding/presentation/second_onboarding.dart';
+import 'package:washslot/core/routes/app_routes.dart';
 import 'package:washslot/firebase_options.dart';
 
 void main() async {
@@ -15,10 +14,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: SecondOnboarding()
+      routerConfig: appRouter,
     );
   }
 }

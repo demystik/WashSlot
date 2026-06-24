@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:washslot/core/common/widgets/app_button.dart';
+import 'package:washslot/core/theme/app_text_styles.dart';
 
 
-import '../../../../core/common/widgets/app_card.dart';
-import '../../../../core/common/widgets/app_text_field.dart';
-import '../../../../core/theme/app_spacing.dart';
+import '../../../core/common/widgets/app_card.dart';
+import '../../../core/common/widgets/app_text_field.dart';
+import '../../../core/theme/app_spacing.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -30,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final colors = Theme.of(context).colorScheme;
+    Size screenSize = MediaQuery.of(context).size;
 
     return Scaffold(
       body: SafeArea(
@@ -39,23 +41,36 @@ class _LoginPageState extends State<LoginPage> {
             child: Form(
               key: _formKey,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   // ── Header ─────────────────────────────────
-                  Text('Welcome Back', style: text.displayMedium),
+                  Column(children: [
+
+                  Text('Welcome Back',
+                  textAlign: TextAlign.center,
+                   style: AppTextStyles.displayMedium.copyWith(fontWeight: FontWeight.bold),),
                   const SizedBox(height: AppSpacing.xs),
-                  Text(
-                    'Sign in to continue',
-                    style: text.bodyMedium?.copyWith(
-                      color: colors.onSurface.withValues(alpha: 0.55),
+                  SizedBox(
+                    width: screenSize.width * 0.7,
+                    child: Text(
+                      'Access your account to book and track your car wash services.',
+                      textAlign: TextAlign.center,
+                      style: text.bodyMedium?.copyWith(
+                        color: colors.onSurface.withValues(alpha: 0.55),
+                      ),
                     ),
                   ),
-                  const SizedBox(height: AppSpacing.xxl),
+                  const SizedBox(height: AppSpacing.xl),
+                  ],),
 
                   // ── Form Card ──────────────────────────────
                   AppCard(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text("Email Address", style: text.bodySmall?.copyWith(fontWeight: FontWeight.bold),),
+                        SizedBox(height: AppSpacing.sm,),
                         AppTextField(
                           label: 'Email',
                           hint: 'you@example.com',
@@ -70,6 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                               : 'Enter a valid email',
                         ),
                         const SizedBox(height: AppSpacing.md),
+                        Text("Password", style: text.bodySmall?.copyWith(fontWeight: FontWeight.bold),),
+                        SizedBox(height: AppSpacing.sm,),
                         AppTextField(
                           label: 'Password',
                           controller: _passCtrl,
@@ -114,7 +131,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   // ── Submit ─────────────────────────────────
                   AppButton(
-                    label: 'Sign In',
+                    label: 'Login',
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         // TOD: add logic here
@@ -123,7 +140,34 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: AppSpacing.lg),
 
+                  // Or continue with____________________
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    Container(
+                      height: 1,
+                      width: screenSize.width * 0.2,
+                      color: colors.secondary.withValues(alpha: 0.5),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.sm),
+                      child: Text("OR CONTINUE WITH", style: text.bodySmall,),
+                    ),
+                    Container(
+                      height: 1,
+                      width: screenSize.width * 0.2,
+                      color: colors.secondary.withValues(alpha: 0.5),
+                    ),
+                  ],),
+                  const SizedBox(height: AppSpacing.lg),
+
+                //Google SignIn Button______________________________
+
+                AppButton(label: "Sign in with Google", onPressed: (){}, variant: AppButtonVariant.outlined,),
+
+
                   // ── Register redirect ──────────────────────
+                  const SizedBox(height: AppSpacing.xl),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

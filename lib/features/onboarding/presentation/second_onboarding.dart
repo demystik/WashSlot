@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:washslot/core/common/widgets/app_button.dart';
 import 'package:washslot/core/theme/app_spacing.dart';
 import 'package:washslot/core/theme/app_text_styles.dart';
@@ -24,7 +25,7 @@ class SecondOnboarding extends StatelessWidget {
               SizedBox(height: AppSpacing.lg),
               Stack(
                 children: [
-                  Container(width: 270, height: 270, decoration: BoxDecoration(
+                  Container(width: screenSize.width * 0.7, height: screenSize.width * 0.7, decoration: BoxDecoration(
                     border: Border.all(width: 3, color: appColorScheme.onSecondary),
                     image: DecorationImage(
                       fit: BoxFit.cover,
@@ -89,14 +90,17 @@ class SecondOnboarding extends StatelessWidget {
               // Buttons___________________
                SizedBox(height: AppSpacing.lg), 
               Column(children: [
-              AppButton(label: "Get Started", onPressed: (){}),
+              AppButton(label: "Get Started", onPressed: (){
+                context.pop();
+              }),
               SizedBox(height: AppSpacing.sm,),
               AppButton(label: "Log in", 
               variant: AppButtonVariant.outlined,
-              onPressed: (){}),
+              onPressed: (){
+                context.go("/login_screen");
+              }),
               SizedBox(height: AppSpacing.lg,),
               ],),
-
             ],
           ),
         ),

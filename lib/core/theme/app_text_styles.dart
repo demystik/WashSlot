@@ -9,6 +9,9 @@ abstract class AppTextStyles {
   static const TextStyle displayMedium = TextStyle(
     fontFamily: _baseFont, fontSize: 26, fontWeight: FontWeight.w700, height: 1.2,
   );
+  static const TextStyle displaySmall = TextStyle(
+    fontFamily: _baseFont, fontSize: 23, fontWeight: FontWeight.w700, height: 1.2,
+  );
   static const TextStyle titleLarge = TextStyle(
     fontFamily: _baseFont, fontSize: 20, fontWeight: FontWeight.w600, height: 1.3,
   );
