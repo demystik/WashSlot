@@ -21,6 +21,8 @@ abstract class AppTheme {
       onSurface: AppColors.black,
       outline: AppColors.grey400,
       surfaceContainerHighest: AppColors.grey200,
+      scrim: AppColors.accent,
+      surfaceContainerHigh: AppColors.grey100,
       onSurfaceVariant: AppColors.grey700,
       shadow: AppColors.black,
     ),

@@ -27,4 +27,7 @@ abstract class AppTextStyles {
   static const TextStyle labelMedium = TextStyle(
     fontFamily: _baseFont, fontSize: 12, fontWeight: FontWeight.w500, height: 1.4, letterSpacing: 0.5,
   );
+  static const TextStyle labelSmall = TextStyle(
+    fontFamily: _baseFont, fontSize: 10, fontWeight: FontWeight.w400, height: 1.4, letterSpacing: 0.5,
+  );
 }
