@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:washslot/core/theme/app_text_styles.dart';
+import 'package:washslot/features/auth/presentation/first_onboarding.dart';
 import 'package:washslot/firebase_options.dart';
 
 void main() async {
@@ -15,15 +16,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-      home: const Scaffold(
-        body: Column(
-          children: [
-            Center(child: Text("Hello", style: AppTextStyles.displayLarge)),
-          ],
-        ),
-      ),
+      home: FirstOnboarding()
     );
   }
 }
