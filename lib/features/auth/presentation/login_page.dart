@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:washslot/core/common/widgets/app_button.dart';
 import 'package:washslot/core/theme/app_text_styles.dart';
 
@@ -32,6 +33,7 @@ class _LoginPageState extends State<LoginPage> {
     final text = Theme.of(context).textTheme;
     final colors = Theme.of(context).colorScheme;
     Size screenSize = MediaQuery.of(context).size;
+    final logoSize = screenSize.width * 0.3;
 
     return Scaffold(
       body: SafeArea(
@@ -44,6 +46,10 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+
+                  //Logo___________________________________________
+                  Image.asset("assets/logos/logo.png", width: logoSize,),
+
                   // ── Header ─────────────────────────────────
                   Column(children: [
 
@@ -173,7 +179,9 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       Text("Don't have an account? ", style: text.bodyMedium),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          context.go("signup_screen");
+                        },
                         child: Text(
                           'Sign Up',
                           style: text.bodyMedium?.copyWith(
