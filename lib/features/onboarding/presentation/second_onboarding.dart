@@ -29,7 +29,8 @@ class SecondOnboarding extends StatelessWidget {
                     border: Border.all(width: 3, color: appColorScheme.onSecondary),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage("https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")),
+                      image: AssetImage("assets/images/wash2.jpg"),
+                      ),
                     color: appColorScheme.primary,
                     borderRadius: BorderRadius.circular(AppSpacing.xl),
                     boxShadow: [BoxShadow(
@@ -91,7 +92,7 @@ class SecondOnboarding extends StatelessWidget {
                SizedBox(height: AppSpacing.lg), 
               Column(children: [
               AppButton(label: "Get Started", onPressed: (){
-                context.pop();
+                context.go("/signup_screen");
               }),
               SizedBox(height: AppSpacing.sm,),
               AppButton(label: "Log in", 

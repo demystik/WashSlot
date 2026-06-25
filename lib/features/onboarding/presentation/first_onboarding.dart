@@ -11,6 +11,7 @@ class FirstOnboarding extends StatelessWidget {
   Widget build(BuildContext context) {
   Size screenSize = MediaQuery.of(context).size;
   ColorScheme appColorScheme = Theme.of(context).colorScheme;
+  final imageSize = screenSize.width.clamp(250.0, 350.0);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -22,8 +23,8 @@ class FirstOnboarding extends StatelessWidget {
               SizedBox(height: AppSpacing.md,),
               //Image containers_______________________
               Container(
-                width: screenSize.width * 0.7,
-                height: screenSize.width * 0.7,
+                width: imageSize * 0.8,
+                height: imageSize  * 0.8,
                 padding: EdgeInsets.all(AppSpacing.sm),
                 decoration: BoxDecoration(
                   color: appColorScheme.onPrimary,
@@ -31,7 +32,8 @@ class FirstOnboarding extends StatelessWidget {
                   border: Border.all(width: 8, color: appColorScheme.onSecondary),
                   image: DecorationImage(
                   fit: BoxFit.cover,
-                    image: NetworkImage("https://images.unsplash.com/photo-1607860108855-64acf2078ed9?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),),
+                    image: AssetImage("assets/images/wash1.jpg"),
+                    ),
                   boxShadow: [
                     BoxShadow(
                       spreadRadius: 1.2,
@@ -41,7 +43,9 @@ class FirstOnboarding extends StatelessWidget {
                   ],
                 ),
               ),
-
+          
+              // Spacer(),
+          
               // Onboarding Messages______________________
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,9 +58,13 @@ class FirstOnboarding extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: AppSpacing.md),
-                  SizedBox(
-                    width: screenSize.width * 0.7,
+                  ConstrainedBox(
+                    constraints: BoxConstraints(
+                      maxWidth: 270,
+                    ),
                     child: Text(
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.center,
                       "Find trusted car wash services and reserve your preferred time with just a few taps",
                       style: AppTextStyles.bodyMedium.copyWith(color: appColorScheme.outline, fontWeight: FontWeight.w700),
@@ -85,7 +93,7 @@ class FirstOnboarding extends StatelessWidget {
                   ),
                 ],
               ),
-
+          
               // Buttons___________________
               Column(children: [
               AppButton(label: "Get Started", onPressed: (){
