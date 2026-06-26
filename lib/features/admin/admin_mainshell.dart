@@ -20,19 +20,19 @@ class AdminMainshell extends StatelessWidget {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(LucideIcons.layoutDashboard),
+            icon: Icon(LucideIcons.layoutDashboard, color: Colors.black26),
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(LucideIcons.server),
+            icon: Icon(LucideIcons.server, color: Colors.black26),
             label: "Bookings",
           ),
           BottomNavigationBarItem(
-            icon: Icon(LucideIcons.frame),
+            icon: Icon(LucideIcons.frame, color: Colors.black26),
             label: "Services",
           ),
           BottomNavigationBarItem(
-            icon: Icon(LucideIcons.personStanding),
+            icon: Icon(LucideIcons.personStanding, color: Colors.black26),
             label: "Profile",
           ),
         ],

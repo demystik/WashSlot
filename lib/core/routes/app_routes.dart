@@ -1,5 +1,6 @@
-// import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:washslot/features/admin/admin_carwash_setup.dart';
+import 'package:washslot/features/admin/admin_manage_availability.dart';
 import 'package:washslot/features/admin/booking/admin_bookings.dart';
 import 'package:washslot/features/admin/dashboard/admin_dashboard.dart';
 import 'package:washslot/features/admin/admin_mainshell.dart';
@@ -14,7 +15,6 @@ import 'package:washslot/features/onboarding/presentation/second_onboarding.dart
 final GoRouter appRouter = GoRouter(
   initialLocation: '/first_onboarding_screen',
   routes: [
-
     //Statefull Shell________________________________________________
     StatefulShellRoute.indexedStack(
       builder: (context, state, navigationShell) {
@@ -24,7 +24,7 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: "/admin_dashboard",
+              path: "/admin/dashboard",
               builder: (context, state) => const AdminDashboard(),
             ),
           ],
@@ -32,7 +32,7 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: "/admin_bookings",
+              path: "/admin/bookings",
               builder: (context, state) => const AdminBookings(),
             ),
           ],
@@ -40,7 +40,7 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: "/admin_services",
+              path: "/admin/services",
               builder: (context, state) => const AdminServices(),
             ),
           ],
@@ -48,16 +48,13 @@ final GoRouter appRouter = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              path: "/admin_Profile",
+              path: "/admin/profile",
               builder: (context, state) => const AdminProfile(),
             ),
           ],
         ),
       ],
     ),
-
-
-
 
     GoRoute(
       path: '/first_onboarding_screen',
@@ -81,6 +78,18 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: "/reset_password_screen",
       builder: (context, state) => const ResetPasswordScreen(),
+    ),
+    GoRoute(
+      path: "/admin/dashboard/carwash_setup",
+      builder: (context, state) => const AdminCarwashSetup(),
+    ),
+    GoRoute(
+      path: "/admin/dashboard/manage_availability",
+      builder: (context, state) => const AdminManageAvailability(),
+    ),
+    GoRoute(
+      path: "/admin/dashboard/manage_availability",
+      builder: (context, state) => const AdminManageAvailability(),
     ),
   ],
 );
