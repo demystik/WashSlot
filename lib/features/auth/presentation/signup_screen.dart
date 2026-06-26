@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:washslot/core/common/widgets/app_card.dart';
 import 'package:washslot/core/theme/app_spacing.dart';
 import 'package:washslot/core/theme/app_text_styles.dart';
@@ -95,7 +96,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 SizedBox(height: AppSpacing.lg,),
                 SizedBox(height: AppSpacing.lg,),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    context.go("/admin_dashboard");
+                  },
                   child: Text("Owner"),
                 ),
                 SizedBox(height: AppSpacing.lg,),
