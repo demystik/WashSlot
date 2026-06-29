@@ -1,7 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:washslot/core/common/widgets/app_button.dart';
 import 'package:washslot/core/theme/app_text_styles.dart';
+import 'package:washslot/features/auth/service/app_auth_service.dart';
 
 
 import '../../../core/common/widgets/app_card.dart';
@@ -20,6 +22,25 @@ class _LoginPageState extends State<LoginPage> {
   final _emailCtrl = TextEditingController();
   final _passCtrl = TextEditingController();
   bool _obscure = true;
+  bool loading = false;
+  final auth = AppAuthService();
+
+  // Login Logic________________________
+  Future<void> login () async{
+    setState(()=> loading = true);
+
+    try {
+      await auth.signIn(
+        email: _emailCtrl.text.trim(), 
+        password: _passCtrl.text.trim()
+      );
+      // Navigate to dashboard______
+    } on FirebaseAuthException catch (e) {
+      if(!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message ?? "Login Failed")));
+    }
+    setState(()=> loading = false);
+  }
 
   @override
   void dispose() {
@@ -137,10 +158,10 @@ class _LoginPageState extends State<LoginPage> {
 
                   // ── Submit ─────────────────────────────────
                   AppButton(
-                    label: 'Login',
-                    onPressed: () {
+                    label: loading ? 'Logining in...' : 'Login',
+                    onPressed: loading ? null : () {
                       if (_formKey.currentState!.validate()) {
-                        // TOD: add logic here
+                        login;
                       }
                     },
                   ),
