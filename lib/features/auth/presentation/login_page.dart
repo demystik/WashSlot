@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:washslot/core/common/widgets/app_button.dart';
+import 'package:washslot/core/routes/app_router.dart';
 import 'package:washslot/core/theme/app_text_styles.dart';
 import 'package:washslot/features/auth/service/app_auth_service.dart';
 
@@ -28,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   // Login Logic________________________
   Future<void> login () async{
     setState(()=> loading = true);
+      debugPrint("inside login");
 
     try {
       await auth.signIn(
@@ -35,6 +37,8 @@ class _LoginPageState extends State<LoginPage> {
         password: _passCtrl.text.trim()
       );
       // Navigate to dashboard______
+      if(!mounted) return;
+      context.go(AppRouter.adminDashboard);
     } on FirebaseAuthException catch (e) {
       if(!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.message ?? "Login Failed")));
@@ -158,10 +162,11 @@ class _LoginPageState extends State<LoginPage> {
 
                   // ── Submit ─────────────────────────────────
                   AppButton(
-                    label: loading ? 'Logining in...' : 'Login',
+                    label: loading ? 'Loging in...' : 'Login',
                     onPressed: loading ? null : () {
                       if (_formKey.currentState!.validate()) {
-                        login;
+                        login();
+                        debugPrint("under login");
                       }
                     },
                   ),

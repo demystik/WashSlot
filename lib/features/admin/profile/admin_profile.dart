@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:washslot/core/routes/app_router.dart';
@@ -7,6 +8,7 @@ class AdminProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final user = FirebaseAuth.instance.currentUser;
     return Scaffold(
       appBar: AppBar(title: Text("Profile"),),
       body: Column(children: [
@@ -16,6 +18,11 @@ class AdminProfile extends StatelessWidget {
         ElevatedButton(onPressed: ()=> context.push(AppRouter.notificationPref), child: Text("notification pref"),),
         ElevatedButton(onPressed: ()=> context.push(AppRouter.privacyPolicy), child: Text("Privacy policy"),),
         ElevatedButton(onPressed: ()=> context.push(AppRouter.termsOfService), child: Text("Terms of service"),),
+        ElevatedButton(onPressed: (){
+          FirebaseAuth.instance.signOut();
+          context.go(AppRouter.loginScreen);
+          }, 
+          child: Text("Logout"),),
       ],),
       );
   }

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:washslot/core/routes/app_router.dart';
 import 'package:washslot/features/admin/admin_carwash_setup.dart';
@@ -33,14 +35,38 @@ final auth = AppAuthService();
 final GoRouter appRouter = GoRouter(
   initialLocation: '/first_onboarding_screen',
 
-  redirect: (context, state) {
+  redirect: (context, state) async {
+
+
+    //User____________________________
+    final user = FirebaseAuth.instance.currentUser;
+
+    final bool isLoggedIn = user != null;
+    final aboutToLogin = state.matchedLocation == "/login_screen";
 
     //checking is user's current location is protected locations
     final isProtected = protectedRoutes.contains(state.matchedLocation);
 
-    if(isProtected && !auth.isLoggedIn){
+    String role = "guest";
+
+    if(user != null){
+      final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+      role = doc.data()?['role'] ?? 'user';
+    }
+    // Not logged in trying protected route
+    if(isProtected && !isLoggedIn && !aboutToLogin){
       return("/login_screen");
     }
+
+    // Logged in users shouldn't see login
+    if(isLoggedIn && aboutToLogin && role == "admin"){
+      return "/admin/dashboard";
+    }
+
     return null;
   },
 

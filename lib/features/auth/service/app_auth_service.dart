@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AppAuthService {
-  bool get isLoggedIn => true;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //Sign In____________________________________________
