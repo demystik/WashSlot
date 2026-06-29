@@ -104,7 +104,9 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 SizedBox(height: AppSpacing.lg,),
                 GestureDetector(
-                  onTap: (){},
+                  onTap: (){
+                    context.go(AppRouter.clientDashboard);
+                  },
                   child: Text("Client"),
                 ),
               ],

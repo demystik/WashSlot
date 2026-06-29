@@ -24,11 +24,11 @@ class ClientMainshell extends StatelessWidget {
             label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(LucideIcons.server, color: Colors.black26),
+            icon: Icon(LucideIcons.factory, color: Colors.black26),
             label: "Bookings",
           ),
           BottomNavigationBarItem(
-            icon: Icon(LucideIcons.frame, color: Colors.black26),
+            icon: Icon(LucideIcons.van, color: Colors.black26),
             label: "Services",
           ),
           BottomNavigationBarItem(

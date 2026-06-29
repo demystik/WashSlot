@@ -37,4 +37,37 @@ class AppRouter {
   static const serviceProviderScreen = "service_provider_screen";
   static const appointmentBookingScreen = "appointment_booking_screen";
   static const confirmBookingScreen = "confirm_booking_screen";
+  static const clientBookingDetails = "client/bookings/confirm_detail";
 }
+
+const protectedRoutes = [
+  //Admin Nav Screens__________________________________
+  "/admin/dashboard",
+  "/admin/bookings",
+  "/admin/services",
+  "/admin/profile",
+
+  //Admin setup and management______________________________________
+ "/admin/dashboard/manage_availability",
+ "/admin/dashboard/carwash_setup",
+ "/booking_detail_screen",
+ "/edit_personal_info",
+ "/edit_carwash_info",
+  "/notificatio_pref",
+ "/terms_of_service",
+ "/privacy_polity",
+  "/help_center",
+
+
+  //Client Nav Screens______________________________________
+  "client_dashboard",
+  "client_bookings",
+  "client_services",
+  "client_profile",
+
+  //Client services screens___________________________
+  "service_provider_screen",
+  "appointment_booking_screen",
+  "confirm_booking_screen",
+  "client/bookings/confirm_detail",
+];

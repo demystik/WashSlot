@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:washslot/core/routes/app_router.dart';
 import 'package:washslot/features/admin/admin_carwash_setup.dart';
 import 'package:washslot/features/admin/admin_manage_availability.dart';
 import 'package:washslot/features/admin/booking/admin_bookings.dart';
@@ -10,6 +11,7 @@ import 'package:washslot/features/admin/profile/edit_carwash_info.dart';
 import 'package:washslot/features/admin/profile/edit_personal_info.dart';
 import 'package:washslot/features/admin/profile/help_center.dart';
 import 'package:washslot/features/admin/profile/notification_pref.dart';
+import 'package:washslot/features/auth/service/app_auth_service.dart';
 import 'package:washslot/features/legal/privacy_policy.dart';
 import 'package:washslot/features/legal/terms_of_service.dart';
 import 'package:washslot/features/admin/services/admin_services.dart';
@@ -27,8 +29,21 @@ import 'package:washslot/features/client/services/service_providers.dart';
 import 'package:washslot/features/onboarding/presentation/first_onboarding.dart';
 import 'package:washslot/features/onboarding/presentation/second_onboarding.dart';
 
+final auth = AppAuthService();
 final GoRouter appRouter = GoRouter(
   initialLocation: '/first_onboarding_screen',
+
+  redirect: (context, state) {
+
+    //checking is user's current location is protected locations
+    final isProtected = protectedRoutes.contains(state.matchedLocation);
+
+    if(isProtected && !auth.isLoggedIn){
+      return("/login_screen");
+    }
+    return null;
+  },
+
   routes: [
     //Admin Statefull Shell________________________________________________
     StatefulShellRoute.indexedStack(
@@ -82,14 +97,26 @@ final GoRouter appRouter = GoRouter(
               path: "/client_dashboard",
               builder: (context, state) => const ClientDashboard(),
             ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
             GoRoute(
               path: "/client_bookings",
               builder: (context, state) => const ClientBookings(),
             ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
             GoRoute(
               path: "/client_services",
               builder: (context, state) => const ClientServices(),
             ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
             GoRoute(
               path: "/client_profile",
               builder: (context, state) => const ClientProfile(),
@@ -169,6 +196,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: "/confirm_booking_screen",
       builder: (context, state) => const ConfirmBookingScreen(),
+    ),
+    GoRoute(
+      path: "client/bookings/confirm_detail",
+      builder: (context, state) => const BookingDetail(),
     ),
   ],
 );
